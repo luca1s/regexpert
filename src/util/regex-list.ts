@@ -5,27 +5,27 @@ type RL = {
 
 export const regexList: RL[] = [
     {
-        "desc": "Words that end in \"ing\"",
+        "desc": "words that end in \"ing\"",
         "regex": "[a-zA-Z]+ing"
     },
     {
-        "desc": "Positive integer",
+        "desc": "positive integer",
         "regex": "-\\d+"
     },
     {
-        "desc": "Proper nouns",
+        "desc": "proper nouns",
         "regex": "([A-Z])\\w+"
     },
     {
-        "desc": "Hexadecimal numbers",
+        "desc": "hexadecimal numbers",
         "regex": "([a-fA-F0-9]+)"
     },
     {
-        "desc": "Dates (MM/DD/YYYY)",
+        "desc": "dates (MM/DD/YYYY)",
         "regex": "\\d{2}/\\d{2}/\\d{4}"
     },
     {
-        "desc": "Credit card numbers",
+        "desc": "credit card numbers",
         "regex": "\\d{4}-?\\d{4}-?\\d{4}-?\\d{4}"
     },
     {
@@ -33,15 +33,15 @@ export const regexList: RL[] = [
         "regex": "\\d{5}(-\\d{4})?"
     },
     {
-        "desc": "Numbers divisible by 5",
+        "desc": "numbers divisible by 5",
         "regex": "(0|\\d+[0|5])"
     },
     {
-        "desc": "Email addresses",
+        "desc": "email addresses",
         "regex": "[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}"
     },
     {
-        "desc": "Numbers greater than 12",
+        "desc": "numbers greater than 12",
         "regex": "\\d{3,}|[2-9]\\d|1[3-9]"
     },
     {
@@ -49,7 +49,7 @@ export const regexList: RL[] = [
         "regex": "((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\b){4}"
     },
     {
-        "desc": "Regular expressions",
+        "desc": "regular expressions",
         "regex": "\/((?![*+?])(?:[^\r\n\\[/\\]|\\.|\\[(?:[^\r\n\\]\\]|\\.)*\\])+)\/((?:g(?:im?|mi?)?|i(?:gm?|mg?)?|m(?:gi?|ig?)?)?)"
     }
 ]

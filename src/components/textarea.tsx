@@ -4,7 +4,7 @@ export default function Textarea({ isCorrect, value, setValue }: { isCorrect?: b
     let outlineClass;
     if (isCorrect == true) {
         outlineClass = "border-3 border-green-500";
-    } else if (isCorrect == false) {
+    } else if (isCorrect == false && value.length > 0) {
         outlineClass = "border-3 border-red-500";
     }
 
@@ -14,7 +14,7 @@ export default function Textarea({ isCorrect, value, setValue }: { isCorrect?: b
         <div className={cardClass}>
             <div className="card-body">
                 <div className="flex flex-row justify-center items-center space-x-2">
-                    <span className="text-gray-500 text-lg font-mono">/</span>
+                    <span className="text-gray-500 text-lg font-mono">/^</span>
                     <div className="flex-grow bg-gray-900 px-4 py-2 rounded-md flex items-center">
                         <input
                             type="text"
@@ -24,7 +24,7 @@ export default function Textarea({ isCorrect, value, setValue }: { isCorrect?: b
                             onChange={(e) => setValue(e.target.value)}
                         />
                     </div>
-                    <span className="text-gray-500 text-lg font-mono">/g</span>
+                    <span className="text-gray-500 text-lg font-mono">$/g</span>
                 </div>
                 <p className="mt-4 text-sm text-gray-400 text-center">
                     Enter a valid regular expression pattern above.

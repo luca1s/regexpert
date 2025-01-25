@@ -5,22 +5,22 @@ export default function Incorrect({ shouldnothave, shouldhave }: { shouldhave: s
                 Incorrect
             </h3>
             <div className="flex flex-col md:flex-row gap-4">
-                <div className="card w-full max-w-md mx-auto shadow-xl bg-gray-800">
+                {shouldnothave.length > 1 && <div className="card w-full max-w-md mx-auto shadow-xl bg-gray-800">
                     <div className="card-body flex flex-row">
                         <div>
                             <p>Should Not Match:</p>
                             {shouldnothave.map((s, index) => <p key={index} className="text-gray-400">{s}</p>)}
                         </div>
                     </div>
-                </div>
-                <div className="card w-full max-w-md mx-auto shadow-xl bg-gray-800">
+                </div>}
+                {shouldhave.length > 0 && <div className="card w-full max-w-md mx-auto shadow-xl bg-gray-800">
                     <div className="card-body flex flex-row">
                         <div>
                             <p>Should Match:</p>
                             {shouldhave.map((s, index) => <p key={index + shouldnothave.length} className="text-gray-400">{s}</p>)}
                         </div>
                     </div>
-                </div>
+                </div>}
             </div>
         </div>
     );
