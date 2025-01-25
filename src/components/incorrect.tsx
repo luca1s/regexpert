@@ -1,4 +1,4 @@
-export default function Incorrect() {
+export default function Incorrect({ shouldnothave, shouldhave }: { shouldhave: string[], shouldnothave: string[] }) {
     return (
         <div className="p-6 bg-gray-600 rounded-lg shadow-md mt-6">
             <h3 className="text-2xl font-bold mb-4 text-center">
@@ -8,13 +8,16 @@ export default function Incorrect() {
                 <div className="card w-full max-w-md mx-auto shadow-xl bg-gray-800">
                     <div className="card-body flex flex-row">
                         <div>
-                            <p>Expected:</p>
-                            <p className="text-gray-400">This is an <span className="text-green-400 font-bold">example</span> string.</p>
+                            <p>Should Not Match:</p>
+                            {shouldnothave.map((s, index) => <p key={index} className="text-gray-400">{s}</p>)}
                         </div>
-                        <div className="divider divider-horizontal" />
+                    </div>
+                </div>
+                <div className="card w-full max-w-md mx-auto shadow-xl bg-gray-800">
+                    <div className="card-body flex flex-row">
                         <div>
-                            <p>Actual:</p>
-                            <p className="text-gray-400">This is an <span className="text-green-400 font-bold">an</span> example string.</p>
+                            <p>Should Match:</p>
+                            {shouldhave.map((s, index) => <p key={index + shouldnothave.length} className="text-gray-400">{s}</p>)}
                         </div>
                     </div>
                 </div>

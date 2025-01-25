@@ -1,8 +1,6 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
-export default function Textarea({ isCorrect }: { isCorrect?: boolean }) {
-    const [regex, setRegex] = useState("");
-
+export default function Textarea({ isCorrect, value, setValue }: { isCorrect?: boolean, value: string, setValue: Dispatch<SetStateAction<string>>}) {
     let outlineClass;
     if (isCorrect == true) {
         outlineClass = "border-3 border-green-500";
@@ -22,8 +20,8 @@ export default function Textarea({ isCorrect }: { isCorrect?: boolean }) {
                             type="text"
                             className="bg-transparent border-0 outline-none text-center tracking-widest text-green-300 placeholder-gray-600 w-full"
                             placeholder="regex"
-                            value={regex}
-                            onChange={(e) => setRegex(e.target.value)}
+                            value={value}
+                            onChange={(e) => setValue(e.target.value)}
                         />
                     </div>
                     <span className="text-gray-500 text-lg font-mono">/g</span>
