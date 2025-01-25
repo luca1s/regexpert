@@ -1,10 +1,19 @@
 import { useState } from "react";
 
-export default function Textarea() {
+export default function Textarea({ isCorrect }: { isCorrect?: boolean }) {
     const [regex, setRegex] = useState("");
 
+    let outlineClass;
+    if (isCorrect == true) {
+        outlineClass = "border-3 border-green-500";
+    } else if (isCorrect == false) {
+        outlineClass = "border-3 border-red-500";
+    }
+
+    const cardClass = `card w-full max-w-xl mx-auto shadow-xl bg-gray-800 ${outlineClass}`;
+
     return (
-        <div className="card w-full max-w-xl mx-auto shadow-xl bg-gray-800">
+        <div className={cardClass}>
             <div className="card-body">
                 <div className="flex flex-row justify-center items-center space-x-2">
                     <span className="text-gray-500 text-lg font-mono">/</span>

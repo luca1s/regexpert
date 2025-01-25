@@ -1,9 +1,9 @@
+import Correct from "./components/correct"
 import Examples from "./components/examples"
-import Results from "./components/results"
+import Incorrect from "./components/incorrect"
 import Textarea from "./components/textarea"
 
 function App() {
-
   return (
     <div className="h-screen flex flex-col">
       <div className="navbar bg-primary text-primary-content">
@@ -13,7 +13,8 @@ function App() {
       <div className="flex-grow flex flex-col items-center justify-start bg-gray-900">
         <Examples />
         <Textarea />
-        <Results />
+        {/* <Incorrect /> */}
+        <Correct />
       </div>
     </div>
   )
