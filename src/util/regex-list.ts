@@ -9,7 +9,7 @@ export const regexList: RL[] = [
         "regex": "[a-zA-Z]+ing"
     },
     {
-        "desc": "positive integer",
+        "desc": "negative integers",
         "regex": "-\\d+"
     },
     {
@@ -21,7 +21,7 @@ export const regexList: RL[] = [
         "regex": "([a-fA-F0-9]+)"
     },
     {
-        "desc": "dates (MM/DD/YYYY)",
+        "desc": "dates in MM/DD/YYYY format",
         "regex": "\\d{2}/\\d{2}/\\d{4}"
     },
     {
