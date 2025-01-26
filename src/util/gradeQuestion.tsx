@@ -1,10 +1,25 @@
 import { ReactElement } from "react";
 import { data } from "./data";
 
+// fix actual parsing...it should behave the same hardcoded as it does with the user input (it doesn't)
+
+
+export function RegExMatch(regexString: string, originalString: string, targetString: string | null): boolean {
+    try {
+        const regex = new RegExp(regexString, 'g');
+        const match = originalString.match(regex);
+        if (targetString === null) return match === null;
+        return match ? match.includes(targetString) : false;
+    } catch (error) {
+        console.error("Invalid regex:", error);
+        return false;
+    }
+}
+
 export function gradeQuestion(regexString: string, index: number): boolean {
     try {
         const question = data[index];
-        const regex = new RegExp(regexString);
+        const regex = new RegExp(regexString, 'g');
         const captured = question.examples.map(example => {
             const match = example.match(regex);
             return match ? match[0] : null;
@@ -20,21 +35,33 @@ export function gradeQuestion(regexString: string, index: number): boolean {
 export function createHighlightedString(regexString: string, originalString: string): ReactElement {
     try {
         const regex = new RegExp(regexString, 'g');
-        const parts = originalString.split(regex);
-        const matches = originalString.match(regex);
+        const elements: ReactElement[] = [];
+        let lastIndex = 0;
 
-        return (
-            <p className="text-gray-400">
-                {parts.map((part, index) => (
-                    <span key={index}>
-                        {part}
-                        {matches && matches[index] && (
-                            <span className="text-green-400 font-bold">{matches[index]}</span>
-                        )}
-                    </span>
-                ))}
-            </p>
-        );
+        let match;
+        while ((match = regex.exec(originalString)) !== null) {
+            if (match.index > lastIndex) {
+                elements.push(
+                    <span key={`text-${lastIndex}`}>{originalString.slice(lastIndex, match.index)}</span>
+                );
+            }
+
+            elements.push(
+                <span key={`match-${match.index}`} className="text-green-400 font-bold">
+                    {match[0]}
+                </span>
+            );
+
+            lastIndex = regex.lastIndex;
+        }
+
+        if (lastIndex < originalString.length) {
+            elements.push(
+                <span key={`text-${lastIndex}`}>{originalString.slice(lastIndex)}</span>
+            );
+        }
+
+        return <p className="text-gray-400">{elements}</p>;
     } catch (error) {
         console.error("Invalid regex:", error);
         return <p className="text-red-500">Invalid regex pattern</p>;

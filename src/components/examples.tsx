@@ -1,4 +1,6 @@
-export default function Examples({ examples, desc, index }: { examples: string[], desc: string, index: number }) {
+import { createHighlightedString } from "../util/gradeQuestion";
+
+export default function Examples({ examples, desc, index, regexString }: { examples: string[], desc: string, index: number, regexString: string }) {
     return (
         <div className="mt-8 p-6 bg-gray-700 rounded-lg shadow-md mb-6">
             <h2 className="text-2xl font-bold mb-4 text-center">
@@ -10,9 +12,7 @@ export default function Examples({ examples, desc, index }: { examples: string[]
             <div className="flex flex-col sm:flex-row gap-4">
                 {examples.map((example, index) => <div key={index} className="card w-full max-w-md mx-auto shadow-xl bg-gray-800">
                     <div className="card-body">
-                        <p className="text-gray-300 text-center">
-                            {example}
-                        </p>
+                        {createHighlightedString(regexString, example)}
                     </div>
                 </div>)}
             </div>
