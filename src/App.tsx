@@ -2,17 +2,16 @@ import Correct from "./components/correct"
 import Examples from "./components/examples"
 import Incorrect from "./components/incorrect"
 import Textarea from "./components/textarea"
-import { useState, useEffect } from "react"
-import { run } from './util/check-regex'
-import { regexList } from "./util/regex-list"
+import { useState, useEffect, useMemo } from "react"
+import { data } from "./util/data"
+import { gradeQuestion } from "./util/gradeQuestion"
 
 function App() {
   const [index, setIndex] = useState<number>(0);
   const [regexString, setRegexString] = useState<string>("");
+  const currentQuestion = useMemo(() => data[index], [index]);
 
-  let question = run(regexString, index);
-  const isCorrect = question.shouldhave.length + question.shouldnothave.length == 0;
-  const desc = regexList[index].desc;
+  const isCorrect = gradeQuestion(regexString, index);
 
   useEffect(() => {
     setRegexString("");
@@ -26,8 +25,8 @@ function App() {
       <progress className="progress progress-accent w-full" value={(index + 1) / 12} max="1"></progress>
       <div className="flex-grow flex flex-col items-center justify-start bg-gray-900">
         <Examples
-          examples={question.examples}
-          desc={desc}
+          examples={currentQuestion.examples}
+          desc={currentQuestion.desc}
           index={index}
         />
         <Textarea
@@ -35,10 +34,13 @@ function App() {
           setValue={setRegexString}
           isCorrect={isCorrect}
         />
-        {!isCorrect && regexString.length > 0 &&  <Incorrect
-          shouldhave={question.shouldhave}
-          shouldnothave={question.shouldnothave}
-        />}
+        {!isCorrect && regexString.length > 0 && <div className="flex flex-row gap-2">
+          {currentQuestion.examples.slice(0, 2).map((example) => <Incorrect
+            keyRegex={currentQuestion.regex}
+            userRegex={regexString}
+            originalString={example}
+          />)}
+        </div>}
         {isCorrect && <Correct
           index={index}
           setIndex={setIndex}
