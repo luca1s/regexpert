@@ -1,6 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
-
-export default function Textarea({ isCorrect, value, setValue }: { isCorrect?: boolean, value: string, setValue: Dispatch<SetStateAction<string>>}) {
+export default function Textarea({ isCorrect, value, setValue }: { isCorrect?: boolean, value: string, setValue: (value: string) => void }) {
     let outlineClass;
     if (isCorrect == true) {
         outlineClass = "border-3 border-green-500";
