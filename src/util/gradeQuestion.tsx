@@ -1,14 +1,11 @@
 import { ReactElement } from "react";
 import { data } from "./data";
 
-// fix actual parsing...it should behave the same hardcoded as it does with the user input (it doesn't)
-
-
 export function RegExMatch(regexString: string, originalString: string, originalRegex: string): boolean {
     try {
         const regex = new RegExp(regexString, 'g');
         const match = originalString.match(regex);
-        const originalMatch = originalString.match(new RegExp(originalRegex, 'g')); 
+        const originalMatch = originalString.match(new RegExp(originalRegex, 'g'));
         return match == originalMatch;
     } catch (error) {
         console.error("Invalid regex:", error);
@@ -45,6 +42,13 @@ export function createHighlightedString(regexString: string, originalString: str
 
         let match;
         while ((match = regex.exec(originalString)) !== null) {
+            // If the lastIndex is not increasing, it's a zero-width match
+            // Break out of the loop to avoid infinite loop
+            if (regex.lastIndex === lastIndex) {
+                console.warn("Detected zero-width match, breaking to avoid infinite loop");
+                break;
+            }
+
             if (match.index > lastIndex) {
                 elements.push(
                     <span key={`text-${lastIndex}`}>{originalString.slice(lastIndex, match.index)}</span>
