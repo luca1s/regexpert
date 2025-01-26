@@ -4,12 +4,12 @@ import { data } from "./data";
 // fix actual parsing...it should behave the same hardcoded as it does with the user input (it doesn't)
 
 
-export function RegExMatch(regexString: string, originalString: string, targetString: string | null): boolean {
+export function RegExMatch(regexString: string, originalString: string, originalRegex: string): boolean {
     try {
         const regex = new RegExp(regexString, 'g');
         const match = originalString.match(regex);
-        if (targetString === null) return match === null;
-        return match ? match.includes(targetString) : false;
+        const originalMatch = originalString.match(new RegExp(originalRegex, 'g')); 
+        return match == originalMatch;
     } catch (error) {
         console.error("Invalid regex:", error);
         return false;
@@ -25,7 +25,12 @@ export function gradeQuestion(regexString: string, index: number): boolean {
             return match ? match[0] : null;
         });
 
-        return JSON.stringify(captured) === JSON.stringify(question.captured);
+        const capturedOriginal = question.examples.map(example => {
+            const match = example.match(new RegExp(question.regex, 'g'));
+            return match ? match[0] : null;
+        });
+
+        return JSON.stringify(captured) === JSON.stringify(capturedOriginal);
     } catch (error) {
         console.error("Invalid regex:", error);
         return false;

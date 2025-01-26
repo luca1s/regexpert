@@ -7,7 +7,6 @@ export const data = [
             "apple is my favorite fruit.",
             "He bought applesauce, but no apple."
         ],
-        captured: ["apple", "apple", "apple"]
     },
     {
         desc: "words that end in \"ing\"",
@@ -17,7 +16,6 @@ export const data = [
             "The cat is sleeping",
             "The dog is barking"
         ],
-        captured: ["running", "sleeping", "barking"]
     },
     {
         desc: "dates in YYYY-MM-DD format",
@@ -27,7 +25,6 @@ export const data = [
             "Start date: 2024-01-15, end date: 2024-02-15.",
             "Invalid date 20-23-05-10, but here is 2022-11-30."
         ],
-        captured: ["2023-05-20", "2024-01-15", "2022-11-30"]
     },
     {
         desc: "sequences of three consecutive repeated characters",
@@ -37,7 +34,6 @@ export const data = [
             "Look for aaa in this string.",
             "There's no repeat here except eee."
         ],
-        captured: ["ooo", "aaa", "eee"]
     },
     {
         desc: "email addresses",
@@ -47,11 +43,6 @@ export const data = [
             "Send an email to hello.world@domain.org now!",
             "Invalid email: test@site"
         ],
-        captured: [
-            "support@company.com",
-            "hello.world@domain.org",
-            null
-        ]
     },
     {
         desc: "URLs starting with http or https",
@@ -61,11 +52,6 @@ export const data = [
             "This page http://site.org/info is helpful.",
             "Secure sites use https://www.secure-site.net."
         ],
-        captured: [
-            "https://example.com",
-            "http://site.org/info",
-            "https://www.secure-site.net"
-        ]
     },
     {
         desc: "text inside parentheses",
@@ -74,8 +60,7 @@ export const data = [
             "The color (blue) is my favorite.",
             "He said (hello) and waved.",
             "Nested (parentheses (like this)) are tricky."
-        ],
-        captured: ["(blue)", "(hello)", "(like this)"]
+        ]
     },
     {
         desc: "HTML content with <title> tags",
@@ -84,8 +69,7 @@ export const data = [
             "<title>My Website</title>",
             "<html><title>Page Title</title></html>",
             "No title here <title></title>"
-        ],
-        captured: ["<title>My Website</title>", "<title>Page Title</title>", "<title></title>"]
+        ]
     },
     {
         desc: "phone numbers in (123) 456-7890 format",
@@ -94,11 +78,6 @@ export const data = [
             "Call me at (123) 456-7890 tomorrow.",
             "Numbers like (987) 654-3210 are valid.",
             "Invalid: 123-456-7890, Valid: (555) 333-1212"
-        ],
-        captured: [
-            "(123) 456-7890",
-            "(987) 654-3210",
-            "(555) 333-1212"
         ]
     },
     {
@@ -108,11 +87,6 @@ export const data = [
             '{"name": "John", "age": "30"}',
             '{"id": "12345", "status": "active"}',
             '{"city": "New York", "country": "USA"}'
-        ],
-        captured: [
-            '"name": "John"',
-            '"status": "active"',
-            '"country": "USA"'
         ]
     }
 ];

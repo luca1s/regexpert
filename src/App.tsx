@@ -16,7 +16,7 @@ function App() {
 
   let incorrectValues = [];
   for (let i = 0; i < currentQuestion.examples.length; i++) {
-    if (!RegExMatch(regexString, currentQuestion.examples[i], currentQuestion.captured[i])) {
+    if (!RegExMatch(regexString, currentQuestion.examples[i], currentQuestion.regex)) {
       incorrectValues.push(currentQuestion.examples[i]);
     }
   }
